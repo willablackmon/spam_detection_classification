@@ -1,23 +1,19 @@
 # Module 13 Challenge
 
+
 https://bootcampspot.instructure.com/courses/6442/assignments/80396?module_item_id=1260837
 
+improving the email filtering system
 
-* **Due** **Aug 6** **by** **10:59pm**
-* **Points** **100**
-* **Submitting** **a text entry box or a website url**
+dataset contains information about emails, with two possible classifications: spam and not spam.
 
-### Background
+develop a supervised machine learning (ML) model that will accurately detect spam emails
 
-Let's say you work at an Internet Service Provider (ISP) and you've been tasked with improving the email filtering system for its customers. You've been provided with a dataset that contains information about emails, with two possible classifications: spam and not spam. The ISP wants you to take this dataset and develop a supervised machine learning (ML) model that will accurately detect spam emails so it can filter them out of its customers' inboxes.
+create two classification models to fit the provided data, and evaluate which model is more accurate at detecting spam.
 
-You will be creating two classification models to fit the provided data, and evaluate which model is more accurate at detecting spam. The models you'll create will be a logistic regression model and a random forest model.
+logistic regression model
 
-### Files
-
-Download the following files to help you get started:
-
-[Module 13 Challenge files**Links to an external site.**](https://static.bc-edx.com/ai/ail-v-1-0/m13/lms/starter/M13_Starter_Code.zip)
+random forest model.
 
 ### Before You Begin
 
