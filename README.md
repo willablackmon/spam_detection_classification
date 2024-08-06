@@ -1,32 +1,26 @@
-# Module 13 Challenge
+# Improving a Spam Email Filter
 
+### Goals:
 
-https://bootcampspot.instructure.com/courses/6442/assignments/80396?module_item_id=1260837
+Develop a supervised machine learning (ML) model that will accurately detect spam emails.
 
-improving the email filtering system
+Create two classification models to fit the provided data, and evaluate which model is more accurate at detecting spam
 
-dataset contains information about emails, with two possible classifications: spam and not spam.
+* Logistic Regression Model
+* Random Forest Model.
 
-develop a supervised machine learning (ML) model that will accurately detect spam emails
+---
 
-create two classification models to fit the provided data, and evaluate which model is more accurate at detecting spam.
+### Data:
 
-logistic regression model
+This dataset contains information about emails, with two possible classifications: spam and not spam.
 
-random forest model.
+* The data is located at [https://static.bc-edx.com/ai/ail-v-1-0/m13/challenge/spam-data.csv](https://static.bc-edx.com/ai/ail-v-1-0/m13/challenge/spam-data.csv)
+* Dataset Source: [UCI Machine Learning Library](https://archive.ics.uci.edu/dataset/94/spambase)
 
-### Before You Begin
+---
 
-Before starting the assignment, be sure to complete the following steps:
-
-* Create a new repository for this project called `classification-challenge`.  **Do not add this homework assignment to an existing repository** .
-* Clone the new repository to your computer.
-* Inside your local Git repository, add the starter file `spam_detector.ipynb` from your file downloads.
-* Push these changes to GitHub or GitLab.
-
-### Instructions
-
-This challenge consists of the following subsections:
+### Steps:
 
 * Split the data into training and testing sets.
 * Scale the features.
@@ -34,86 +28,69 @@ This challenge consists of the following subsections:
 * Create a random forest model.
 * Evaluate the models.
 
-#### Split the Data into Training and Testing Sets
+###### Split the Data into Training and Testing Sets
 
-Open the starter code notebook and then use it to complete the following steps.
-
-1. Read the data from [https://static.bc-edx.com/ai/ail-v-1-0/m13/challenge/spam-data.csv**Links to an external site.**](https://static.bc-edx.com/ai/ail-v-1-0/m13/challenge/spam-data.csv) into a Pandas DataFrame.
-2. In the appropriate markdown cell, make a prediction as to which model you expect to do better.
-3. Create the labels set (`y`) from the “spam” column, and then create the features (`X`) DataFrame from the remaining columns.
-   **NOTE**
-
-   A value of 0 in the “spam” column means that the message is legitimate. A value of 1 means that the message has been classified as spam.
+1. Read data into a Pandas DataFrame
+2. Inspect data and make a prediction as to which model  (Logistic Regression, Random Forest Classifier)
+3. Create the labels set (`y`) from“spam” column, and features (`X`) DataFrame from remaining columns.
+   * value of 0 in the “spam” column means that the message is legitimate.
+   * value of 1 means that the message has been classified as spam.
 4. Check the balance of the labels variable (`y`) by using the `value_counts` function.
 5. Split the data into training and testing datasets by using `train_test_split`.
 
-#### Scale the Features
+###### Scale the Features
 
 1. Create an instance of `StandardScaler`.
 2. Fit the Standard Scaler with the training data.
 3. Scale the training and testing features DataFrames using the transform function.
 
-#### Create a Logistic Regression Model
+###### Create a Logistic Regression Model
 
-Employ your knowledge of logistic regression to complete the following steps:
-
-1. Fit a logistic regression model by using the scaled training data (`X_train_scaled` and `y_train`). Set the `random_state` argument to `1`.
+1. Create and Fit a logistic regression model using the scaled training data (`X_train_scaled` and `y_train`). Set the `random_state` argument to `1`.
 2. Save the predictions on the testing data labels by using the testing feature data (`X_test_scaled`) and the fitted model.
-3. Evaluate the model’s performance by calculating the accuracy score of the model.
+3. Evaluate the model performance by calculating the accuracy score of the model.
 
-#### Create a Random Forest Model
+###### Create a Random Forest Model
 
-Employ your knowledge of the random forest classifier to complete the following steps:
-
-1. Fit a random forest classifier model by using the scaled training data (`X_train_scaled` and `y_train`).
+1. Create and Fit a random forest classifier model using the scaled training data (`X_train_scaled` and `y_train`).
 2. Save the predictions on the testing data labels by using the testing feature data (`X_test_scaled`) and the fitted model.
-3. Evaluate the model’s performance by calculating the accuracy score of the model.
+3. Evaluate the model performance by calculating the accuracy score of the model.
 
-#### Evaluate the Models
+###### Evaluate the Models
 
-In the appropriate markdown cell, answer the following questions:
-
-1. Which model performed better?
-2. How does that compare to your prediction?
+* **Logistic Regression** training score: 0.9296
+* **Logistic Regression** accuracy_score: 0.9279
+* **Random Forest Classifier** training score: 0.9997
+* **Random Forest Classifier** accuracy_score: 0.9652
 
 ---
 
-### Requirements
+### **Results:**
 
-To receive all points, your Jupyter notebook file must have all of the following:
+Random Forest Classification has a higher accuracy, but the Training Score suggests this model is highly over-fit.  **The Logistic Regression model is a 'better' model even though it's accuracy is lower.**
 
-#### Split the Data into Training and Testing Sets (30 points)
+My prediction was "I think it's possible that many Features will be colinear and that Random Forest will handle those better."  This was not correct. However, the models did behave as expected:
 
-* There is a prediction about which model you expect to do better. (5 points)
-* The labels set (`y`) is created from the “spam” column. (5 points)
-* The features DataFrame (`X`) is created from the remaining columns. (5 points)
-* The `value_counts` function is used to check the balance of the labels variable (`y`). (5 points)
-* The data is correctly split into training and testing datasets by using `train_test_split`. (10 points)
+* I thought that Logistic Regression might struggle with non-linear problems, but this one appears to be fairly linear, without too many outliers.
+* I mentioned that Random Forest might struggle with overfitting, and I believe that is the case here and the more dominating effect.
 
-#### Scale the Features (20 points)
+**Final thoughts:**
 
-* An instance of `StandardScaler` is created. (5 points)
-* The Standard Scaler instance is fit with the training data. (5 points)
-* The training features DataFrame is scaled using the transform function. (5 points)
-* The testing features DataFrame is scaled using the transform function. (5 points)
+Reviewing the Random Forest Graph with 'feature_importances', I found it interesting that some of the biggest predictors of 'spam' are the frequency of ! and $ characters, as well as the words: free, remove, your, hp(?), and money.
 
-#### Create a Logistic Regression Model (20 points)
+This focus on money-related terms, as well as seeming 'demands' ("Your xyz needs attention ....") is expected, but interesting to see statistically.
 
-* A logistic regression model is created with a `random_state` of `1`. (5 points)
-* The logistic regression model is fitted to the scaled training data (`X_train_scaled` and `y_train`). (5 points)
-* Predictions are made for the testing data labels by using the testing feature data (`X_test_scaled`) and the fitted model, and saved to a variable. (5 points)
-* The model’s performance is evaluated by calculating the accuracy score of the model with the `accuracy_score` function. (5 points)
+```
+[(0.12192112814008209, 'char_freq_!'),
+ (0.09533933570058972, 'char_freq_$'),
+ (0.07158337229698059, 'word_freq_free'),
+ (0.06923901267709875, 'word_freq_remove'),
+ (0.06811104369368015, 'capital_run_length_average'),
+ (0.05579496385525832, 'capital_run_length_longest'),
+ (0.0533025421651241, 'word_freq_your'),
+ (0.045464200536752736, 'capital_run_length_total'),
+ (0.03860171446883917, 'word_freq_hp'),
+ (0.03164392902362354, 'word_freq_money')]
 
-#### Create a Random Forest Model (20 points)
 
-* A random forest model is created with a `random_state` of `1`. (5 points)
-* The random forest model is fitted to the scaled training data (`X_train_scaled` and `y_train`). (5 points)
-* Predictions are made for the testing data labels by using the testing feature data (`X_test_scaled`) and the fitted model, and saved to a variable. (5 points)
-* The model’s performance is evaluated by calculating the accuracy score of the model with the `accuracy_score` function. (5 points)
-
-#### Evaluate the Models (10 points)
-
-The following questions are answered accurately:
-
-* Which model performed better? (5 points)
-* How does that compare to your prediction? (5 points)
+```
