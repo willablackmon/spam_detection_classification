@@ -21,6 +21,12 @@ The UCI Spambase dataset was pre-processed and scaled, and two models were creat
 
 **Sourcing** : Dataset Source: [UCI Machine Learning Library](https://archive.ics.uci.edu/dataset/94/spambase)
 
+<figure>
+    <figcaption><em></em></figcaption>
+    <img src="images/1730147104015.png" style="width: 100%; max-width: 600px;" 
+         alt="1730147104015.png">
+</figure>
+
 **Pre-Processing:**
 
 * `pandas`, `sklearn.model_selection` used to load dataset, inspect the dataset's structure and data types, and separate the y/target from the X/feature data, and verify label balance.
@@ -52,30 +58,23 @@ The UCI Spambase dataset was pre-processed and scaled, and two models were creat
 
 Random Forest Classification has a higher accuracy 96.5%, but the Training Score of 99.97% suggests this model is highly over-fit.  The Logistic Regression model performs well at 92.8%.
 
-I had anticipated the following:
+Prior to modeling, I had anticipated the following:
 
 * **Logistic Regression** might struggle with non-linear data; however, the data appeared to be fairly linear, without too many outliers, so handed the data well.
 * **Random Forest** model would handle colinear Features better, but might struggle with overfitting; that seems to be the case here and the overfitting is the more dominating effect.
 
-**Note of interest:** Reviewing Random Forest 'feature_importances', the biggest predictors of 'spam' are the **character frequency** of ! (at 12.2%) and $ ()at 9.5%).  Additionally, the **presence of words**: free, remove, your, hp(?), and money dominated the feature importances:
+**Note of interest:** Reviewing Random Forest 'feature_importances', the biggest predictors of 'spam' are the **character frequency** of ! (12.2%) and $ (9.5%).  Additionally, the **presence of words**: free, remove, your, hp(?), and money dominated the feature importances:
 
-[(0.12192112814008209, 'char_freq_!'),
- (0.09533933570058972, 'char_freq_$'),
- (0.07158337229698059, 'word_freq_free'),
- (0.06923901267709875, 'word_freq_remove'),
- (0.06811104369368015, 'capital_run_length_average'),
- (0.05579496385525832, 'capital_run_length_longest'),
- (0.0533025421651241, 'word_freq_your'),
- (0.045464200536752736, 'capital_run_length_total'),
- (0.03860171446883917, 'word_freq_hp'),
- (0.03164392902362354, 'word_freq_money')]
+<figure>
+    <figcaption><em></em></figcaption>
+    <img src="images/1730147811055.png" style="width: 100%; max-width: 700px;" 
+         alt="1730147811055.png">
+</figure>
 
-
----
-
-## Technologies and Tools
+Technologies and Tools
 
 * **Data Preprocessing** : `pandas` for handling and cleaning data.
+* **Visualizations:** `matplotlib`
 * **Scaling** : `StandardScaler` from `sklearn.preprocessing` for feature scaling.
 * **Modeling** : `LogisticRegression` and `RandomForestClassifier` from `sklearn` for model training.
 * **Environment** : Jupyter Notebook
