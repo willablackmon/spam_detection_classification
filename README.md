@@ -1,62 +1,45 @@
-# Improving a Spam Email Filter
+# Spam Detection/Classification with Logistic Regression and Random Forest Models
 
-### Goals:
+This project develops supervised machine learning (ML) models that will accurately detect spam email.  The main objective is to classify email as spam or not spam and compare the performance of two classification models: **Logistic Regression** and  **Random Forest Classifier** .
 
-Develop a supervised machine learning (ML) model that will accurately detect spam emails.
+**[Data](#data) | [Modeling](#modeling) | [Evaluation and Scoring](#evaluation-and-scoring) | [Technologies and Tools](#technologies-and-tools)**
 
-Create two classification models to fit the provided data, and evaluate which model is more accurate at detecting spam
+---
+
+## Abstract
+
+The project creates classification models to fit data is sourced from the UCI Spambase dataset and predict whether an email is spam or not spam. Key focus is on accuracy comparison between the models, to determine the best approach for email classification.
+
+The UCI Spambase dataset was pre-processed and scaled, and two models were created and trained:
 
 * Logistic Regression Model
-* Random Forest Model.
+* Random Forest Model
 
 ---
 
-### Data:
+## Data
 
-This dataset contains information about emails, with two possible classifications: spam and not spam.
+**Sourcing** : Dataset Source: [UCI Machine Learning Library](https://archive.ics.uci.edu/dataset/94/spambase)
 
-* The data is located at [https://static.bc-edx.com/ai/ail-v-1-0/m13/challenge/spam-data.csv](https://static.bc-edx.com/ai/ail-v-1-0/m13/challenge/spam-data.csv)
-* Dataset Source: [UCI Machine Learning Library](https://archive.ics.uci.edu/dataset/94/spambase)
+**Pre-Processing:**
+
+* `pandas`, `sklearn.model_selection` used to load dataset, inspect the dataset's structure and data types, and separate the y/target from the X/feature data, and verify label balance.
+* `sklearn.preprocessing` were used to apply `StandardScaler `to scale the features for both training and test data.
 
 ---
 
-### Steps:
+## Modeling
 
-* Split the data into training and testing sets.
-* Scale the features.
-* Create a logistic regression model.
-* Create a random forest model.
-* Evaluate the models.
+### Model Selection
 
-###### Split the Data into Training and Testing Sets
+* **Logistic Regression** from `sklearn.linear_model`
+* **Random Forest Classifier** from `sklearn.ensemble`
 
-1. Read data into a Pandas DataFrame
-2. Inspect data and make a prediction as to which model  (Logistic Regression, Random Forest Classifier)
-3. Create the labels set (`y`) from“spam” column, and features (`X`) DataFrame from remaining columns.
-   * value of 0 in the “spam” column means that the message is legitimate.
-   * value of 1 means that the message has been classified as spam.
-4. Check the balance of the labels variable (`y`) by using the `value_counts` function.
-5. Split the data into training and testing datasets by using `train_test_split`.
+---
 
-###### Scale the Features
+### Evaluation and Scoring
 
-1. Create an instance of `StandardScaler`.
-2. Fit the Standard Scaler with the training data.
-3. Scale the training and testing features DataFrames using the transform function.
-
-###### Create a Logistic Regression Model
-
-1. Create and Fit a logistic regression model using the scaled training data (`X_train_scaled` and `y_train`). Set the `random_state` argument to `1`.
-2. Save the predictions on the testing data labels by using the testing feature data (`X_test_scaled`) and the fitted model.
-3. Evaluate the model performance by calculating the accuracy score of the model.
-
-###### Create a Random Forest Model
-
-1. Create and Fit a random forest classifier model using the scaled training data (`X_train_scaled` and `y_train`).
-2. Save the predictions on the testing data labels by using the testing feature data (`X_test_scaled`) and the fitted model.
-3. Evaluate the model performance by calculating the accuracy score of the model.
-
-###### Evaluate the Models
+**Accuracy Metric** : The primary evaluation metric was `accuracy_score` from `sklearn.metrics`.
 
 * **Logistic Regression** training score: 0.9296
 * **Logistic Regression** accuracy_score: 0.9279
@@ -65,22 +48,17 @@ This dataset contains information about emails, with two possible classification
 
 ---
 
-### **Results:**
+## Interpretation and Insights
 
-Random Forest Classification has a higher accuracy, but the Training Score suggests this model is highly over-fit.  **The Logistic Regression model is a 'better' model even though it's accuracy is lower.**
+Random Forest Classification has a higher accuracy 96.5%, but the Training Score of 99.97% suggests this model is highly over-fit.  The Logistic Regression model performs well at 92.8%.
 
-My prediction was "I think it's possible that many Features will be colinear and that Random Forest will handle those better."  This was not correct. However, the models did behave as expected:
+I had anticipated the following:
 
-* I thought that Logistic Regression might struggle with non-linear problems, but this one appears to be fairly linear, without too many outliers.
-* I mentioned that Random Forest might struggle with overfitting, and I believe that is the case here and the more dominating effect.
+* **Logistic Regression** might struggle with non-linear data; however, the data appeared to be fairly linear, without too many outliers, so handed the data well.
+* **Random Forest** model would handle colinear Features better, but might struggle with overfitting; that seems to be the case here and the overfitting is the more dominating effect.
 
-**Final thoughts:**
+**Note of interest:** Reviewing Random Forest 'feature_importances', the biggest predictors of 'spam' are the **character frequency** of ! (at 12.2%) and $ ()at 9.5%).  Additionally, the **presence of words**: free, remove, your, hp(?), and money dominated the feature importances:
 
-Reviewing the Random Forest Graph with 'feature_importances', I found it interesting that some of the biggest predictors of 'spam' are the frequency of ! and $ characters, as well as the words: free, remove, your, hp(?), and money.
-
-This focus on money-related terms, as well as seeming 'demands' ("Your xyz needs attention ....") is expected, but interesting to see statistically.
-
-```
 [(0.12192112814008209, 'char_freq_!'),
  (0.09533933570058972, 'char_freq_$'),
  (0.07158337229698059, 'word_freq_free'),
@@ -93,4 +71,13 @@ This focus on money-related terms, as well as seeming 'demands' ("Your xyz needs
  (0.03164392902362354, 'word_freq_money')]
 
 
-```
+---
+
+## Technologies and Tools
+
+* **Data Preprocessing** : `pandas` for handling and cleaning data.
+* **Scaling** : `StandardScaler` from `sklearn.preprocessing` for feature scaling.
+* **Modeling** : `LogisticRegression` and `RandomForestClassifier` from `sklearn` for model training.
+* **Environment** : Jupyter Notebook
+
+---
