@@ -1,6 +1,6 @@
 # Spam Detection/Classification with Logistic Regression and Random Forest Models
 
-This project develops supervised machine learning (ML) models that will accurately detect spam email.  The main objective is to classify email as spam or not spam and compare the performance of two classification models: **Logistic Regression** and  **Random Forest Classifier** .
+This project develops supervised machine learning (ML) models that will accurately detect spam email.  The main objective is to classify email as spam or not spam and compare the performance of two classification models: **Logistic Regression** and **Random Forest Classifier** .
 
 **[Data](#data) | [Modeling](#modeling) | [Evaluation and Scoring](#evaluation-and-scoring) | [Technologies and Tools](#technologies-and-tools)**
 
@@ -8,7 +8,7 @@ This project develops supervised machine learning (ML) models that will accurate
 
 ## Abstract
 
-The project creates classification models to fit data is sourced from the UCI Spambase dataset and predict whether an email is spam or not spam. Key focus is on accuracy comparison between the models, to determine the best approach for email classification.
+The project creates classification models to fit data sourced from the UCI Spambase dataset and predict whether email is spam or not spam. Key focus is on accuracy comparison between models, to determine best approach for email classification.
 
 The UCI Spambase dataset was pre-processed and scaled, and two models were created and trained:
 
