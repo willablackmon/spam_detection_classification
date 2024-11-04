@@ -1,14 +1,14 @@
 # Spam Detection/Classification with Logistic Regression and Random Forest Models
 
-This project develops supervised machine learning (ML) models that will accurately detect spam email.  The main objective is to classify email as spam or not spam and compare the performance of two classification models: **Logistic Regression** and **Random Forest Classifier** .
+Developed supervised machine learning (ML) models that will accurately detect spam email.  The main objective is to classify email as spam or not spam and compare the performance of two classification models: **Logistic Regression** and **Random Forest Classifier** .
 
-**[Data](#data) | [Modeling](#modeling) | [Evaluation and Scoring](#evaluation-and-scoring) | [Technologies and Tools](#technologies-and-tools)**
+**[Data](#data) | [Modeling](#modeling) | [Evaluation and Scoring](#evaluation-and-scoring)**
 
 ---
 
 ## Abstract
 
-The project creates classification models to fit data sourced from the UCI Spambase dataset and predict whether email is spam or not spam. Key focus is on accuracy comparison between models, to determine best approach for email classification.
+The project creates classification models to fit data sourced from the UCI Spambase dataset and predict whether email is spam or not spam.  Perform accuracy comparison between models to determine best approach for email classification.
 
 The UCI Spambase dataset was pre-processed and scaled, and two models were created and trained:
 
@@ -16,6 +16,14 @@ The UCI Spambase dataset was pre-processed and scaled, and two models were creat
 * Random Forest Model
 
 ---
+
+## Technologies and Tools
+
+* **Data Preprocessing** : `pandas` for handling and cleaning data.
+* **Visualizations:** `matplotlib`
+* **Scaling** : `StandardScaler` from `sklearn.preprocessing` for feature scaling.
+* **Modeling** : `LogisticRegression` and `RandomForestClassifier` from `sklearn` for model training.
+* **Environment** : Jupyter Notebook
 
 ## Data
 
@@ -70,13 +78,5 @@ Prior to modeling, I had anticipated the following:
     <img src="images/1730147811055.png" style="width: 100%; max-width: 700px;" 
          alt="1730147811055.png">
 </figure>
-
-Technologies and Tools
-
-* **Data Preprocessing** : `pandas` for handling and cleaning data.
-* **Visualizations:** `matplotlib`
-* **Scaling** : `StandardScaler` from `sklearn.preprocessing` for feature scaling.
-* **Modeling** : `LogisticRegression` and `RandomForestClassifier` from `sklearn` for model training.
-* **Environment** : Jupyter Notebook
 
 ---
